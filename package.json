@@ -1,0 +1,28 @@
+{
+  "name": "tcga-mri-viewer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server/server.mjs",
+    "dev": "node server/server.mjs",
+    "verify:index": "node scripts/verify-index.mjs",
+    "verify:labels": "node scripts/verify-labels.mjs",
+    "verify:cache": "node scripts/verify-cache.mjs",
+    "verify:special": "node scripts/verify-special-cases.mjs",
+    "verify:volumes": "node scripts/verify-volumes.mjs",
+    "verify:server": "node scripts/verify-server.mjs",
+    "verify:all": "npm run check && npm run verify:index && npm run verify:labels && npm run verify:cache && npm run verify:special && npm run verify:volumes && npm run verify:server && npm exec vite build",
+    "check": "node --check server/server.mjs && node --check src/data-index.mjs && node --check src/label-index.mjs && node --check src/nifti-header.mjs && node --check web/src/volume-cache.js && node --check web/src/nifti-volume.js && node --check web/src/main.js"
+  },
+  "dependencies": {
+    "@kitware/vtk.js": "^37.4.2",
+    "exceljs": "^4.4.0",
+    "express": "^5.1.0",
+    "nifti-reader-js": "^0.8.0",
+    "vite": "^7.1.10"
+  },
+  "overrides": {
+    "uuid": "^11.1.1"
+  }
+}
